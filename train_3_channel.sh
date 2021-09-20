@@ -13,6 +13,6 @@ declare -a runs=("1" "2" "3" "4" "5" "6" "7" "8" "9" "10")
 
 for seed in ${seeds[@]}; do
     for run in ${runs[@]}; do
-        python CNQ_model_split_by_patient_3_channel.py $seed $run
+        python /content/mi_detection/CNQ_model_split_by_patient_3_channel.py $seed $run
     done
 done
