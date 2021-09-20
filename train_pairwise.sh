@@ -15,7 +15,7 @@ for seed in ${seeds[@]}; do
                     continue
                 fi
                 # echo $seed $run $channel_one $channel_two	
-                python CNQ_model_split_by_patient.py $seed $run $channel_one $channel_two
+                python /content/mi_detection/CNQ_model_split_by_patient.py $seed $run $channel_one $channel_two
             done
         done
     done
