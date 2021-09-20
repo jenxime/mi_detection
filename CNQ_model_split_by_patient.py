@@ -25,13 +25,13 @@ channel_2 = sys.argv[4]
 print(seed_num, run_num, channel_1, channel_2)
 
 # load real data (ptbdb)
-with open('ptbdb_data/RECORDS') as fp:  
+with open('/content/mi_detection/ptbdb_data/RECORDS') as fp:  
     lines = fp.readlines()
 
 files_unhealthy, files_healthy = [], []
 
 for file in lines:
-    file_path = "ptbdb_data/" + file[:-1] + ".hea"
+    file_path = "/content/mi_detection/ptbdb_data/" + file[:-1] + ".hea"
     
     # read header to determine class
     if 'Myocardial infarction' in open(file_path).read():
@@ -144,26 +144,26 @@ for patient_id in move_to_val:
 
 data_healthy_train = []
 for file in healthy_train:
-    data_v4, _ = wfdb.rdsamp("ptbdb_data/" + file[:-1], channel_names=[str(channel_1)])
-    data_v5, _ = wfdb.rdsamp("ptbdb_data/" + file[:-1], channel_names=[str(channel_2)])
+    data_v4, _ = wfdb.rdsamp("/content/mi_detection/ptbdb_data/" + file[:-1], channel_names=[str(channel_1)])
+    data_v5, _ = wfdb.rdsamp("/content/mi_detection/ptbdb_data/" + file[:-1], channel_names=[str(channel_2)])
     data = [data_v4.flatten(), data_v5.flatten()]
     data_healthy_train.append(data)
 data_healthy_val = []
 for file in healthy_val:
-    data_v4, _ = wfdb.rdsamp("ptbdb_data/" + file[:-1], channel_names=[str(channel_1)])
-    data_v5, _ = wfdb.rdsamp("ptbdb_data/" + file[:-1], channel_names=[str(channel_2)])
+    data_v4, _ = wfdb.rdsamp("/content/mi_detection/ptbdb_data/" + file[:-1], channel_names=[str(channel_1)])
+    data_v5, _ = wfdb.rdsamp("/content/mi_detection/ptbdb_data/" + file[:-1], channel_names=[str(channel_2)])
     data = [data_v4.flatten(), data_v5.flatten()]
     data_healthy_val.append(data)
 data_unhealthy_train = []
 for file in unhealthy_train:
-    data_v4, _ = wfdb.rdsamp("ptbdb_data/" + file[:-1], channel_names=[str(channel_1)])
-    data_v5, _ = wfdb.rdsamp("ptbdb_data/" + file[:-1], channel_names=[str(channel_2)])
+    data_v4, _ = wfdb.rdsamp("/content/mi_detection/ptbdb_data/" + file[:-1], channel_names=[str(channel_1)])
+    data_v5, _ = wfdb.rdsamp("/content/mi_detection/ptbdb_data/" + file[:-1], channel_names=[str(channel_2)])
     data = [data_v4.flatten(), data_v5.flatten()]
     data_unhealthy_train.append(data)
 data_unhealthy_val = []
 for file in unhealthy_val:
-    data_v4, _ = wfdb.rdsamp("ptbdb_data/" + file[:-1], channel_names=[str(channel_1)])
-    data_v5, _ = wfdb.rdsamp("ptbdb_data/" + file[:-1], channel_names=[str(channel_2)])
+    data_v4, _ = wfdb.rdsamp("/content/mi_detection/ptbdb_data/" + file[:-1], channel_names=[str(channel_1)])
+    data_v5, _ = wfdb.rdsamp("/content/mi_detection/ptbdb_data/" + file[:-1], channel_names=[str(channel_2)])
     data = [data_v4.flatten(), data_v5.flatten()]
     data_unhealthy_val.append(data)
 
@@ -302,7 +302,7 @@ optimizer = torch.optim.Adam(model.parameters(), lr=1.0e-4)
 criterion = nn.BCELoss()
 
 # training loop
-writer = SummaryWriter('/home/arjun/mi_detection/runs/runs_' + str(seed_num) + '_' + str(run_num) + '_' + str(channel_1) + '_' + str(channel_2))
+writer = SummaryWriter('/home/jenxime/mi_detection/runs/runs_' + str(seed_num) + '_' + str(run_num) + '_' + str(channel_1) + '_' + str(channel_2))
 
 # num_iters = 30000
 num_iters = 35000
