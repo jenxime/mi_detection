@@ -13,7 +13,7 @@ for seed in ${seeds[@]}; do
     for run in ${runs[@]}; do
         for ((i=0; i<${#best_pairs[@]}; i+=2)); do
             # echo $seed $run ${best_pairs[i]} ${best_pairs[i+1]}
-            python CNQ_model_split_by_patient.py $seed $run ${best_pairs[i]} ${best_pairs[i+1]}
+            python /content/mi_detection/CNQ_model_split_by_patient.py $seed $run ${best_pairs[i]} ${best_pairs[i+1]}
         done
     done
 done
