@@ -19,13 +19,13 @@ seed_num = 37
 print(seed_num, channel_1, channel_2)
 
 # load real data (ptbdb)
-with open('ptbdb_data/RECORDS') as fp:  
+with open('/content/mi_detection/ptbdb_data/RECORDS') as fp:  
     lines = fp.readlines()
 
 files_unhealthy, files_healthy = [], []
 
 for file in lines:
-    file_path = "ptbdb_data/" + file[:-1] + ".hea"
+    file_path = "/content/mi_detection/ptbdb_data/" + file[:-1] + ".hea"
     
     # read header to determine class
     if 'Myocardial infarction' in open(file_path).read():
@@ -41,14 +41,14 @@ np.random.shuffle(files_healthy)
         
 data_unhealthy = []
 for file in files_unhealthy:
-    data_v4, _ = wfdb.rdsamp("ptbdb_data/" + file[:-1], channel_names=[str(channel_1)])
-    data_v5, _ = wfdb.rdsamp("ptbdb_data/" + file[:-1], channel_names=[str(channel_2)])
+    data_v4, _ = wfdb.rdsamp("/content/mi_detection/ptbdb_data/" + file[:-1], channel_names=[str(channel_1)])
+    data_v5, _ = wfdb.rdsamp("/content/mi_detection/ptbdb_data/" + file[:-1], channel_names=[str(channel_2)])
     data = [data_v4.flatten(), data_v5.flatten()]
     data_unhealthy.append(data)
 data_healthy = []
 for file in files_healthy:
-    data_v4, _ = wfdb.rdsamp("ptbdb_data/" + file[:-1], channel_names=[str(channel_1)])
-    data_v5, _ = wfdb.rdsamp("ptbdb_data/" + file[:-1], channel_names=[str(channel_2)])
+    data_v4, _ = wfdb.rdsamp("/content/mi_detection/ptbdb_data/" + file[:-1], channel_names=[str(channel_1)])
+    data_v5, _ = wfdb.rdsamp("/content/mi_detection/ptbdb_data/" + file[:-1], channel_names=[str(channel_2)])
     data = [data_v4.flatten(), data_v5.flatten()]
     data_healthy.append(data)
 
